@@ -1,0 +1,106 @@
+CREATE DATABASE IF NOT EXISTS pet_class DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE pet_class;
+
+-- 教师表
+CREATE TABLE IF NOT EXISTS teacher (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    nickname VARCHAR(50) DEFAULT '',
+    avatar VARCHAR(255) DEFAULT '',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 班级表
+CREATE TABLE IF NOT EXISTS classroom (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    teacher_id BIGINT NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_teacher_id (teacher_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 学生表
+CREATE TABLE IF NOT EXISTS student (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    classroom_id BIGINT NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    sort_order INT DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_classroom_id (classroom_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 宠物表
+CREATE TABLE IF NOT EXISTS pet (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    student_id BIGINT NOT NULL UNIQUE,
+    name VARCHAR(50) DEFAULT '',
+    image_key VARCHAR(50) DEFAULT 'cat',
+    level INT DEFAULT 1,
+    exp INT DEFAULT 0,
+    total_exp INT DEFAULT 0,
+    coins INT DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_student_id (student_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 评分规则表
+CREATE TABLE IF NOT EXISTS rule (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    teacher_id BIGINT NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    type VARCHAR(20) NOT NULL COMMENT 'positive 或 negative',
+    icon VARCHAR(50) DEFAULT 'star',
+    exp_value INT DEFAULT 0,
+    coin_value INT DEFAULT 0,
+    sort_order INT DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_teacher_id (teacher_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 打分记录表
+CREATE TABLE IF NOT EXISTS score_log (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    student_id BIGINT NOT NULL,
+    classroom_id BIGINT NOT NULL,
+    rule_id BIGINT,
+    rule_name VARCHAR(100) NOT NULL,
+    exp_change INT DEFAULT 0,
+    coin_change INT DEFAULT 0,
+    operator_id BIGINT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_student_id (student_id),
+    INDEX idx_classroom_id (classroom_id),
+    INDEX idx_created_at (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 商品表
+CREATE TABLE IF NOT EXISTS shop_item (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    teacher_id BIGINT NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    description VARCHAR(500) DEFAULT '',
+    image VARCHAR(255) DEFAULT '',
+    price INT DEFAULT 0,
+    stock INT DEFAULT -1 COMMENT '-1表示无限库存',
+    status TINYINT DEFAULT 1 COMMENT '0=下架 1=上架',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_teacher_id (teacher_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 购买记录表
+CREATE TABLE IF NOT EXISTS purchase_log (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    student_id BIGINT NOT NULL,
+    shop_item_id BIGINT NOT NULL,
+    item_name VARCHAR(100) NOT NULL,
+    price INT DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_student_id (student_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
