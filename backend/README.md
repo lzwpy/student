@@ -159,3 +159,7 @@ Authorization: Bearer <token>
 2. 增加单元测试与集成测试。
 3. 增加数据库迁移工具（Flyway/Liquibase）。
 4. 根据前端联调结果补充分页、筛选和操作审计字段。
+
+## 10. 联调示例文档
+
+- 详细接口请求/响应示例见：`API_EXAMPLES.md`
