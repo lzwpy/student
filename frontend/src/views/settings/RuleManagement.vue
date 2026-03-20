@@ -4,6 +4,7 @@ import type { RuleItem } from "@/types";
 import { createRuleApi, deleteRuleApi, getRulesApi, updateRuleApi } from "@/api/rule";
 import RuleCard from "@/components/RuleCard.vue";
 import { ElMessage } from "element-plus";
+import AppIcon from "@/components/AppIcon.vue";
 
 const rules = ref<RuleItem[]>([]);
 const dialogVisible = ref(false);
@@ -55,8 +56,11 @@ onMounted(loadData);
 
 <template>
   <div class="space-y-4">
-    <div class="page-card p-5 flex items-center justify-between">
-      <h3 class="text-xl font-semibold">分值管理</h3>
+    <div class="app-section-header">
+      <div class="flex items-center gap-3">
+        <AppIcon name="star" tone="mint" :size="18" />
+        <h3 class="text-xl font-black text-ink">分值管理</h3>
+      </div>
       <el-button type="primary" @click="openCreate">新建规则</el-button>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

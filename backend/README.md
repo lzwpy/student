@@ -140,7 +140,8 @@ Authorization: Bearer <token>
 
 ### 操作日志
 
-- `GET /api/logs?classId=xx&startDate=yyyy-MM-dd&endDate=yyyy-MM-dd`
+- `GET /api/operations/recent?classId=xx&startDate=yyyy-MM-dd&endDate=yyyy-MM-dd&limit=50`
+- `POST /api/operations/{id}/revert`
 
 ## 8. 开发注意事项
 

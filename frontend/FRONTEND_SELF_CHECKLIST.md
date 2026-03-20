@@ -170,8 +170,9 @@
 ### 按钮：查询
 
 - [ ] 按班级、开始/结束日期查询日志
-- [ ] 后端接口命中：`GET /api/logs`
-- [ ] 表格显示 `ruleName/expChange/coinChange/createdAt` 等字段
+- [ ] 后端接口命中：`GET /api/operations/recent`
+- [ ] 可对可撤回记录调用 `POST /api/operations/{id}/revert`
+- [ ] 列表显示 `title/summary/expChange/coinChange/createdAt/reverted` 等字段
 
 ---
 

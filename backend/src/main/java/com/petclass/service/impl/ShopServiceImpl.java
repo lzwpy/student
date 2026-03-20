@@ -9,6 +9,7 @@ import com.petclass.entity.Student;
 import com.petclass.mapper.PurchaseLogMapper;
 import com.petclass.mapper.ShopItemMapper;
 import com.petclass.mapper.StudentMapper;
+import com.petclass.service.OperationService;
 import com.petclass.service.ShopService;
 import com.petclass.service.StudentCoinService;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,7 @@ public class ShopServiceImpl extends ServiceImpl<ShopItemMapper, ShopItem> imple
     private final StudentMapper studentMapper;
     private final PurchaseLogMapper purchaseLogMapper;
     private final StudentCoinService studentCoinService;
+    private final OperationService operationService;
 
     @Override
     public List<ShopItem> listByTeacher(Long teacherId) {
@@ -60,5 +62,13 @@ public class ShopServiceImpl extends ServiceImpl<ShopItemMapper, ShopItem> imple
         log.setItemName(item.getName());
         log.setPrice(item.getPrice());
         purchaseLogMapper.insert(log);
+        operationService.createPurchaseOperation(
+            teacherId,
+            student.getClassroomId(),
+            student.getId(),
+            log.getId(),
+            item.getName(),
+            item.getPrice()
+        );
     }
 }

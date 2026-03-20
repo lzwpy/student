@@ -61,3 +61,20 @@ export interface LeaderboardItem {
   totalExp: number | null;
   coins: number;
 }
+
+export type OperationActionType = "SCORE" | "PURCHASE";
+
+export interface RecentOperationItem {
+  id: number;
+  actionType: OperationActionType;
+  studentId: number;
+  studentName: string;
+  title: string;
+  summary: string;
+  expChange: number;
+  coinChange: number;
+  createdAt: string;
+  revertedAt: string | null;
+  reverted: boolean;
+  revertible: boolean;
+}

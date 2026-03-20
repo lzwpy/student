@@ -433,7 +433,7 @@ Content-Type: application/json
 
 ### 10.1 查询日志
 
-`GET /api/logs?classId=1&startDate=2026-03-01&endDate=2026-03-31`
+`GET /api/operations/recent?classId=1&startDate=2026-03-01&endDate=2026-03-31&limit=20`
 
 响应示例：
 
@@ -444,18 +444,25 @@ Content-Type: application/json
   "data": [
     {
       "id": 10,
+      "actionType": "SCORE",
       "studentId": 1,
-      "classroomId": 1,
-      "ruleId": 1,
-      "ruleName": "积极回答问题",
+      "studentName": "王小明",
+      "title": "积极回答问题",
+      "summary": "EXP +1 ｜ 金币 +1",
       "expChange": 1,
       "coinChange": 1,
-      "operatorId": 1,
-      "createdAt": "2026-03-19T17:26:00"
+      "createdAt": "2026-03-19T17:26:00",
+      "revertedAt": null,
+      "reverted": false,
+      "revertible": true
     }
   ]
 }
 ```
+
+### 10.2 撤回日志
+
+`POST /api/operations/10/revert`
 
 ---
 

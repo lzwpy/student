@@ -397,7 +397,8 @@ erDiagram
 
 ### 操作日志
 
-- `GET /api/logs?classId=xx&startDate=xx&endDate=xx` - 查询操作日志
+- `GET /api/operations/recent?classId=xx&startDate=xx&endDate=xx&limit=20` - 查询最近操作
+- `POST /api/operations/{id}/revert` - 撤回一条可逆操作
 
 ---
 

@@ -16,12 +16,12 @@
   - `common/GlobalExceptionHandler.java`
   - `common/SecurityUtils.java`
 - 实体层
-  - `Teacher/Classroom/Student/Pet/Rule/ScoreLog/ShopItem/PurchaseLog`
+  - `Teacher/Classroom/Student/Pet/Rule/ScoreLog/ShopItem/PurchaseLog/OperationLog`
 - Mapper 层
-  - `TeacherMapper/ClassroomMapper/StudentMapper/PetMapper/RuleMapper/ScoreLogMapper/ShopItemMapper/PurchaseLogMapper`
+  - `TeacherMapper/ClassroomMapper/StudentMapper/PetMapper/RuleMapper/ScoreLogMapper/ShopItemMapper/PurchaseLogMapper/OperationLogMapper`
 - DTO/VO
-  - `AuthDtos/ClassroomDtos/StudentDtos/PetDtos/RuleDtos/ScoreDtos/ShopDtos/LogQueryDto`
-  - `AuthLoginVO/StudentPetVO/LeaderboardItemVO`
+  - `AuthDtos/ClassroomDtos/StudentDtos/PetDtos/RuleDtos/ScoreDtos/ShopDtos/OperationQueryDto`
+  - `AuthLoginVO/StudentPetVO/LeaderboardItemVO/OperationVO`
 - Service 层
   - `AuthService/ClassroomService/StudentService/PetService/RuleService/ScoreService/ShopService/LeaderboardService`
   - 对应 `impl` 已实现
@@ -34,7 +34,7 @@
   - `ScoreController`
   - `ShopController`
   - `LeaderboardController`
-  - `LogController`
+  - `OperationController`
 
 ## 说明
 

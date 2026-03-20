@@ -8,6 +8,7 @@ import com.petclass.entity.Student;
 import com.petclass.mapper.RuleMapper;
 import com.petclass.mapper.ScoreLogMapper;
 import com.petclass.mapper.StudentMapper;
+import com.petclass.service.OperationService;
 import com.petclass.service.PetService;
 import com.petclass.service.ScoreService;
 import com.petclass.service.StudentCoinService;
@@ -23,6 +24,7 @@ public class ScoreServiceImpl implements ScoreService {
     private final ScoreLogMapper scoreLogMapper;
     private final PetService petService;
     private final StudentCoinService studentCoinService;
+    private final OperationService operationService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -48,6 +50,15 @@ public class ScoreServiceImpl implements ScoreService {
         log.setCoinChange(rule.getCoinValue());
         log.setOperatorId(teacherId);
         scoreLogMapper.insert(log);
+        operationService.createScoreOperation(
+            teacherId,
+            student.getClassroomId(),
+            student.getId(),
+            log.getId(),
+            rule.getName(),
+            rule.getExpValue(),
+            rule.getCoinValue()
+        );
     }
 
     @Override
