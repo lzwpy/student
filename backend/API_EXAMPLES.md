@@ -180,7 +180,7 @@ Content-Type: application/json
       "level": null,
       "exp": null,
       "totalExp": null,
-      "coins": null
+      "coins": 0
     }
   ]
 }
@@ -237,7 +237,6 @@ Content-Type: application/json
     "level": 1,
     "exp": 0,
     "totalExp": 0,
-    "coins": 0,
     "createdAt": "2026-03-19T14:10:00",
     "updatedAt": "2026-03-19T14:10:00"
   }
@@ -325,8 +324,9 @@ Content-Type: application/json
 
 成功后会自动：
 
-- 按规则增减 `exp` / `coins`
-- 更新宠物 `level` / `totalExp`
+- 按规则增减宠物 `exp` / `totalExp`
+- 按规则增减学生 `coins`（最低为 `0`）
+- 更新宠物 `level`
 - 写入 `score_log`
 
 ### 7.2 批量打分
@@ -388,7 +388,7 @@ Content-Type: application/json
 }
 ```
 
-购买成功后会自动扣减宠物金币并写入 `purchase_log`。
+购买成功后会自动扣减学生金币并写入 `purchase_log`。
 
 ---
 
@@ -421,6 +421,11 @@ Content-Type: application/json
   ]
 }
 ```
+
+说明：
+
+- 金币为学生独立资产，不再存放于宠物表。
+- 金币榜中若学生尚未领养宠物，`petName` / `imageKey` / `level` / `totalExp` 可能为空。
 
 ---
 

@@ -5,6 +5,7 @@ import com.petclass.common.Result;
 import com.petclass.dto.StudentDtos;
 import com.petclass.entity.Student;
 import com.petclass.service.StudentService;
+import com.petclass.service.StudentCoinService;
 import com.petclass.vo.StudentPetVO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StudentController {
     private final StudentService studentService;
+    private final StudentCoinService studentCoinService;
 
     @GetMapping("/api/classrooms/{classId}/students")
     public Result<List<StudentPetVO>> list(@PathVariable Long classId) {
@@ -42,6 +44,7 @@ public class StudentController {
             student.setName(name);
             student.setSortOrder(nextOrder++);
             studentService.save(student);
+            studentCoinService.getOrCreateByStudentId(student.getId());
         }
         return Result.ok();
     }

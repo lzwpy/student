@@ -34,7 +34,6 @@ public class PetController {
         pet.setLevel(1);
         pet.setExp(0);
         pet.setTotalExp(0);
-        pet.setCoins(0);
         petService.save(pet);
         return Result.ok();
     }

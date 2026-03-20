@@ -11,17 +11,15 @@ import org.springframework.stereotype.Service;
 public class PetServiceImpl extends ServiceImpl<PetMapper, Pet> implements PetService {
 
     @Override
-    public void applyScore(Long studentId, Integer expDelta, Integer coinDelta) {
+    public void applyExpChange(Long studentId, Integer expDelta) {
         Pet pet = getOne(new LambdaQueryWrapper<Pet>().eq(Pet::getStudentId, studentId));
         if (pet == null) {
             throw new IllegalArgumentException("该学生尚未领养宠物");
         }
-        int totalExp = Math.max(0, pet.getTotalExp() + expDelta);
-        int coins = Math.max(0, pet.getCoins() + coinDelta);
+        int totalExp = pet.getTotalExp() + expDelta;
         int level = calculateLevel(totalExp);
         int currentExp = calculateCurrentLevelExp(totalExp, level);
         pet.setTotalExp(totalExp);
-        pet.setCoins(coins);
         pet.setLevel(level);
         pet.setExp(currentExp);
         updateById(pet);

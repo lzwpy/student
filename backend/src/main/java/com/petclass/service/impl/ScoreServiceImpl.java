@@ -10,6 +10,7 @@ import com.petclass.mapper.ScoreLogMapper;
 import com.petclass.mapper.StudentMapper;
 import com.petclass.service.PetService;
 import com.petclass.service.ScoreService;
+import com.petclass.service.StudentCoinService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,7 @@ public class ScoreServiceImpl implements ScoreService {
     private final StudentMapper studentMapper;
     private final ScoreLogMapper scoreLogMapper;
     private final PetService petService;
+    private final StudentCoinService studentCoinService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -34,7 +36,8 @@ public class ScoreServiceImpl implements ScoreService {
             throw new IllegalArgumentException("学生不存在");
         }
 
-        petService.applyScore(student.getId(), rule.getExpValue(), rule.getCoinValue());
+        petService.applyExpChange(student.getId(), rule.getExpValue());
+        studentCoinService.applyCoinChange(student.getId(), rule.getCoinValue());
 
         ScoreLog log = new ScoreLog();
         log.setStudentId(student.getId());

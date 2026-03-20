@@ -27,7 +27,7 @@ export interface StudentPet {
   level: number | null;
   exp: number | null;
   totalExp: number | null;
-  coins: number | null;
+  coins: number;
 }
 
 export interface RuleItem {
@@ -55,9 +55,9 @@ export interface ShopItem {
 export interface LeaderboardItem {
   studentId: number;
   studentName: string;
-  petName: string;
-  imageKey: string;
-  level: number;
-  totalExp: number;
+  petName: string | null;
+  imageKey: string | null;
+  level: number | null;
+  totalExp: number | null;
   coins: number;
 }

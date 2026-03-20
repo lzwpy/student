@@ -18,7 +18,6 @@ public class Pet {
     private Integer level;
     private Integer exp;
     private Integer totalExp;
-    private Integer coins;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

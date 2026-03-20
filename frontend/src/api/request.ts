@@ -15,7 +15,7 @@ request.interceptors.request.use((config) => {
 });
 
 request.interceptors.response.use(
-  (response) => {
+  (response: any): any => {
     const result = response.data as ApiResult<unknown>;
     if (result.code !== 200) {
       return Promise.reject(new Error(result.msg));

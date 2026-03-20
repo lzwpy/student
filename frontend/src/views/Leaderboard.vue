@@ -34,9 +34,21 @@ onMounted(loadData);
       <el-table :data="list.slice(3)" style="width:100%">
         <el-table-column type="index" label="排名" width="80" />
         <el-table-column prop="studentName" label="学生" />
-        <el-table-column prop="petName" label="宠物" />
-        <el-table-column prop="level" label="等级" />
-        <el-table-column prop="totalExp" label="总经验" />
+        <el-table-column label="宠物">
+          <template #default="{ row }">
+            {{ row.petName || "未领养" }}
+          </template>
+        </el-table-column>
+        <el-table-column label="等级">
+          <template #default="{ row }">
+            {{ row.level ?? "-" }}
+          </template>
+        </el-table-column>
+        <el-table-column label="总经验">
+          <template #default="{ row }">
+            {{ row.totalExp ?? "-" }}
+          </template>
+        </el-table-column>
         <el-table-column prop="coins" label="金币" />
       </el-table>
     </div>

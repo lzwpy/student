@@ -12,8 +12,8 @@ defineProps<{
       <div class="text-2xl mb-2">NO.{{ idx + 1 }}</div>
       <img :src="`/pets/${item.imageKey || 'cat_1'}.svg`" class="h-16 w-16 mx-auto" alt="pet" />
       <div class="font-semibold mt-2">{{ item.studentName }}</div>
-      <div class="text-slate-500 text-sm">{{ item.petName }}</div>
-      <div class="mt-2 text-sm">Lv.{{ item.level }}</div>
+      <div class="text-slate-500 text-sm">{{ item.petName || "未领养" }}</div>
+      <div class="mt-2 text-sm">{{ item.level === null ? "未领养宠物" : `Lv.${item.level}` }}</div>
     </div>
   </div>
 </template>

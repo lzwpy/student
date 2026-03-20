@@ -3,15 +3,14 @@ package com.petclass.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.petclass.dto.ShopDtos;
-import com.petclass.entity.Pet;
 import com.petclass.entity.PurchaseLog;
 import com.petclass.entity.ShopItem;
 import com.petclass.entity.Student;
-import com.petclass.mapper.PetMapper;
 import com.petclass.mapper.PurchaseLogMapper;
 import com.petclass.mapper.ShopItemMapper;
 import com.petclass.mapper.StudentMapper;
 import com.petclass.service.ShopService;
+import com.petclass.service.StudentCoinService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,8 +21,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ShopServiceImpl extends ServiceImpl<ShopItemMapper, ShopItem> implements ShopService {
     private final StudentMapper studentMapper;
-    private final PetMapper petMapper;
     private final PurchaseLogMapper purchaseLogMapper;
+    private final StudentCoinService studentCoinService;
 
     @Override
     public List<ShopItem> listByTeacher(Long teacherId) {
@@ -44,19 +43,11 @@ public class ShopServiceImpl extends ServiceImpl<ShopItemMapper, ShopItem> imple
         if (student == null) {
             throw new IllegalArgumentException("学生不存在");
         }
-        Pet pet = petMapper.selectOne(new LambdaQueryWrapper<Pet>().eq(Pet::getStudentId, student.getId()));
-        if (pet == null) {
-            throw new IllegalArgumentException("该学生尚未领养宠物");
-        }
-        if (pet.getCoins() < item.getPrice()) {
-            throw new IllegalArgumentException("金币不足");
-        }
         if (item.getStock() != null && item.getStock() >= 0 && item.getStock() <= 0) {
             throw new IllegalArgumentException("库存不足");
         }
 
-        pet.setCoins(pet.getCoins() - item.getPrice());
-        petMapper.updateById(pet);
+        studentCoinService.spendCoins(student.getId(), item.getPrice());
 
         if (item.getStock() != null && item.getStock() > 0) {
             item.setStock(item.getStock() - 1);
