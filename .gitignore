@@ -1,0 +1,28 @@
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/**/*.vue.js
+frontend/vite.config.d.ts
+
+# Backend (Java / Maven)
+backend/target/
+*.class
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs & temp
+*.log
+*.tmp
+
+# Local env
+.env
+.env.local
+.env.*.local

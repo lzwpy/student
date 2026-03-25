@@ -269,7 +269,6 @@ Content-Type: application/json
 {
   "name": "积极回答问题",
   "type": "positive",
-  "icon": "thumb-up",
   "expValue": 1,
   "coinValue": 1,
   "sortOrder": 1
@@ -286,7 +285,6 @@ Content-Type: application/json
 {
   "name": "上课走神",
   "type": "negative",
-  "icon": "warning",
   "expValue": -1,
   "coinValue": -1,
   "sortOrder": 1

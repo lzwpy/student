@@ -61,6 +61,7 @@ source backend/src/main/resources/db/schema.sql;
 - `score_log`
 - `shop_item`
 - `purchase_log`
+- `operation_log`（统一操作时间线；若旧库缺表，启动时会自动执行 `db/migrate_create_operation_log.sql` 补建）
 
 ## 5. 启动项目
 

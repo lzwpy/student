@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>最近操作记录样式稿</title>
+  <style>
+    body { margin:0; padding:32px; background:#fff6ef; font-family:"Microsoft YaHei",sans-serif; color:#1f2937; }
+    .drawer {
+      max-width:1080px;
+      margin:0 auto;
+      background:#fff;
+      border:1px solid #f1e7dd;
+      border-radius:34px;
+      padding:24px;
+      box-shadow:0 16px 32px rgba(252,199,159,.16);
+    }
+    .item {
+      margin-top:18px;
+      padding:18px 20px;
+      border:1px solid #f5e9e1;
+      border-radius:24px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+    }
+    .tag { padding:8px 12px; border-radius:999px; font-size:14px; font-weight:700; }
+    .chip { padding:8px 12px; border-radius:999px; font-weight:700; }
+    .btn { min-height:46px; padding:0 16px; border-radius:18px; border:1px solid #fecdd3; background:#fff1f3; color:#e11d48; font-weight:700; }
+  </style>
+</head>
+<body>
+  <div class="drawer">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="font-size:36px;font-weight:800;">最近操作记录</div>
+        <div style="margin-top:6px;color:#6b7280;">支持查看最近打分与购买动作，并对可逆操作进行撤回。</div>
+      </div>
+      <span class="tag" style="background:#f3f4f6;color:#4b5563;">最近 10 条</span>
+    </div>
+
+    <div class="item">
+      <div>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <span class="tag" style="background:#dffaf4;color:#0f766e;">打分</span>
+          <strong>英语课文背诵和单词默写</strong>
+        </div>
+        <div style="margin-top:8px;color:#6b7280;">李昱成 · 2026/03/19 16:37:12</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <span class="chip" style="background:#dffaf4;color:#0f766e;">EXP +1</span>
+        <span class="chip" style="background:#fff7dd;color:#a16207;">+1 金币</span>
+        <button class="btn">撤回</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <span class="tag" style="background:#fff7dd;color:#a16207;">购买</span>
+          <strong>购买了星星奖励贴纸</strong>
+        </div>
+        <div style="margin-top:8px;color:#6b7280;">李昱成 · 2026/03/19 16:37:10</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <span class="chip" style="background:#fff1f3;color:#be123c;">金币 -5</span>
+        <button class="btn">撤回</button>
+      </div>
+    </div>
+
+    <div class="item" style="opacity:.65;">
+      <div>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <span class="tag" style="background:#dffaf4;color:#0f766e;">打分</span>
+          <strong>月度积分前 5 名</strong>
+          <span class="tag" style="background:#fce7f3;color:#9d174d;">已撤回</span>
+        </div>
+        <div style="margin-top:8px;color:#6b7280;">已处理的记录会保留，但不可重复撤回。</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <span class="chip" style="background:#f3f4f6;color:#4b5563;">不可操作</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

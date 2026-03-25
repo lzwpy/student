@@ -35,7 +35,6 @@ public class RuleController {
         rule.setTeacherId(SecurityUtils.getCurrentTeacherId());
         rule.setName(request.getName());
         rule.setType(request.getType());
-        rule.setIcon(request.getIcon());
         rule.setExpValue(request.getExpValue());
         rule.setCoinValue(request.getCoinValue());
         rule.setSortOrder(request.getSortOrder() == null ? 0 : request.getSortOrder());
@@ -51,7 +50,6 @@ public class RuleController {
         }
         rule.setName(request.getName());
         rule.setType(request.getType());
-        rule.setIcon(request.getIcon());
         rule.setExpValue(request.getExpValue());
         rule.setCoinValue(request.getCoinValue());
         rule.setSortOrder(request.getSortOrder() == null ? 0 : request.getSortOrder());

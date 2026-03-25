@@ -4,6 +4,7 @@ import AppIcon from "@/components/AppIcon.vue";
 
 defineProps<{
   items: LeaderboardItem[];
+  mode: "pet" | "coin";
 }>();
 </script>
 
@@ -20,18 +21,36 @@ defineProps<{
       </div>
       <div class="mt-4 flex justify-center">
         <div class="pet-card-art flex h-24 w-24 items-center justify-center rounded-[2rem] border border-white/70">
-          <img :src="`/pets/${item.imageKey || 'cat_1'}.svg`" class="h-16 w-16 object-contain" alt="pet" />
+          <template v-if="mode === 'pet'">
+            <img
+              :src="`/pets/${item.imageKey || 'cat_1'}.svg`"
+              class="h-16 w-16 object-contain"
+              alt="pet"
+            />
+          </template>
+          <template v-else>
+            <AppIcon name="coin" tone="gold" :size="44" />
+          </template>
         </div>
       </div>
       <div class="mt-4 text-2xl font-black text-ink">{{ item.studentName }}</div>
-      <div class="mt-1 text-sm text-slate-500">{{ item.petName || "未领养" }}</div>
-      <div class="mt-3 flex flex-wrap justify-center gap-2">
-        <span class="app-chip-primary">{{ item.level === null ? "未领养宠物" : `Lv.${item.level}` }}</span>
-        <span class="app-chip-gold">
-          <AppIcon name="coin" tone="gold" :size="14" />
-          {{ item.coins }}
-        </span>
-      </div>
+      <template v-if="mode === 'pet'">
+        <div class="mt-1 text-sm text-slate-500">{{ item.petName || "未领养" }}</div>
+        <div class="mt-3 flex flex-wrap justify-center gap-2">
+          <span class="app-chip-primary">{{ item.level === null ? "未领养宠物" : `Lv.${item.level}` }}</span>
+          <span class="app-chip-gold">
+            <AppIcon name="coin" tone="gold" :size="14" />
+            {{ item.coins }}
+          </span>
+        </div>
+      </template>
+      <template v-else>
+        <div class="mt-2 text-3xl font-black text-gold-dark">{{ item.coins }} 金币</div>
+        <div class="mt-2 text-xs text-slate-500">
+          宠物：{{ item.petName || "未领养" }}
+          <span v-if="item.level != null" class="text-slate-400"> · Lv.{{ item.level }}</span>
+        </div>
+      </template>
     </div>
   </div>
 </template>

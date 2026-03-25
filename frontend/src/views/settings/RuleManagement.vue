@@ -12,7 +12,6 @@ const editingId = ref<number | null>(null);
 const form = ref({
   name: "",
   type: "positive" as "positive" | "negative",
-  icon: "star",
   expValue: 1,
   coinValue: 1,
   sortOrder: 1
@@ -24,7 +23,7 @@ async function loadData() {
 
 function openCreate() {
   editingId.value = null;
-  form.value = { name: "", type: "positive", icon: "star", expValue: 1, coinValue: 1, sortOrder: 1 };
+  form.value = { name: "", type: "positive", expValue: 1, coinValue: 1, sortOrder: 1 };
   dialogVisible.value = true;
 }
 

@@ -27,6 +27,10 @@ onMounted(loadData);
 watch(classId, () => {
   void loadData();
 });
+
+function rankIndex(index: number) {
+  return index + 4;
+}
 </script>
 
 <template>
@@ -41,14 +45,14 @@ watch(classId, () => {
         <el-segmented v-model="activeTab" :options="[{label:'宠物榜',value:'pet'},{label:'金币榜',value:'coin'}]" />
       </div>
     </div>
-    <LeaderboardPodium :items="list" />
+    <LeaderboardPodium :items="list" :mode="activeTab" />
     <div class="app-card p-5">
       <div class="mb-4 flex items-center gap-3">
         <AppIcon name="star" tone="mint" :size="18" />
         <h3 class="text-xl font-bold text-ink">完整榜单</h3>
       </div>
-      <el-table :data="list.slice(3)" style="width:100%">
-        <el-table-column type="index" label="排名" width="80" />
+      <el-table v-if="activeTab === 'pet'" :data="list.slice(3)" style="width:100%">
+        <el-table-column type="index" :index="rankIndex" label="排名" width="80" />
         <el-table-column prop="studentName" label="学生" />
         <el-table-column label="宠物">
           <template #default="{ row }">
@@ -65,7 +69,31 @@ watch(classId, () => {
             {{ row.totalExp ?? "-" }}
           </template>
         </el-table-column>
-        <el-table-column prop="coins" label="金币" />
+        <el-table-column prop="coins" label="金币" width="100" />
+      </el-table>
+      <el-table v-else :data="list.slice(3)" style="width:100%">
+        <el-table-column type="index" :index="rankIndex" label="排名" width="80" />
+        <el-table-column prop="studentName" label="学生" />
+        <el-table-column label="金币" width="120">
+          <template #default="{ row }">
+            <span class="font-bold text-gold-dark">{{ row.coins }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="宠物">
+          <template #default="{ row }">
+            {{ row.petName || "未领养" }}
+          </template>
+        </el-table-column>
+        <el-table-column label="等级">
+          <template #default="{ row }">
+            {{ row.level ?? "-" }}
+          </template>
+        </el-table-column>
+        <el-table-column label="总经验">
+          <template #default="{ row }">
+            {{ row.totalExp ?? "-" }}
+          </template>
+        </el-table-column>
       </el-table>
     </div>
   </div>

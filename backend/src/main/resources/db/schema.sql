@@ -109,7 +109,6 @@ CREATE TABLE IF NOT EXISTS rule (
     teacher_id  BIGINT          NOT NULL COMMENT '所属教师 ID',
     name        VARCHAR(100)    NOT NULL COMMENT '规则名称',
     type        VARCHAR(20)     NOT NULL COMMENT '规则类型：positive 加分 / negative 扣分',
-    icon        VARCHAR(50)     NOT NULL DEFAULT 'star' COMMENT '前端展示用图标键',
     exp_value   INT             NOT NULL DEFAULT 0 COMMENT '单次操作经验变化（可正可负由业务解释）',
     coin_value  INT             NOT NULL DEFAULT 0 COMMENT '单次操作金币变化',
     sort_order  INT             NOT NULL DEFAULT 0 COMMENT '展示排序',

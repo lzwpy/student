@@ -14,7 +14,6 @@ public class RuleDtos {
         private String name;
         @NotBlank(message = "规则类型不能为空")
         private String type;
-        private String icon;
         @NotNull(message = "经验值不能为空")
         private Integer expValue;
         @NotNull(message = "金币值不能为空")

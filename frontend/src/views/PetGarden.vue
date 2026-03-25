@@ -82,15 +82,19 @@ watch(classId, () => {
               </p>
             </div>
           </div>
-          <div class="flex flex-wrap gap-3">
-            <el-button @click="operationsVisible = true">
-              <AppIcon name="history" tone="slate" :size="14" />
-              最近操作
-            </el-button>
-            <el-button type="primary" @click="loadData">
-              <AppIcon name="refresh" tone="dark" :size="14" />
-              刷新
-            </el-button>
+          <div class="flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              class="pg-toolbar-btn"
+              @click="operationsVisible = true"
+            >
+              <AppIcon name="history" tone="slate" :size="16" />
+              <span>最近操作</span>
+            </button>
+            <button type="button" class="pg-toolbar-btn pg-toolbar-btn--primary" @click="loadData">
+              <AppIcon name="refresh" tone="mint" :size="16" />
+              <span>刷新</span>
+            </button>
           </div>
         </div>
       </section>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>打分弹窗样式稿</title>
+  <style>
+    body { margin:0; padding:32px; background:#fff6ef; font-family:"Microsoft YaHei",sans-serif; color:#1f2937; }
+    .dialog {
+      max-width:1180px;
+      margin:0 auto;
+      padding:28px;
+      border-radius:34px;
+      background:#fff;
+      border:1px solid #f1e7dd;
+      box-shadow:0 16px 32px rgba(252,199,159,.16);
+    }
+    .header { display:flex; justify-content:space-between; align-items:center; gap:20px; }
+    .profile { display:flex; gap:18px; align-items:center; }
+    .avatar { width:86px; height:86px; border-radius:26px; background:linear-gradient(135deg,#ffe6cf,#ffd7bc); }
+    .btn { padding:12px 18px; border-radius:18px; border:1px solid #d8f4ee; background:#f1fffb; color:#0f766e; font-weight:700; }
+    .grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:26px; }
+    .panel { padding:20px; border-radius:28px; border:1px solid #f1e7dd; }
+    .panel.positive { background:#f7fffd; }
+    .panel.negative { background:#fff7f8; }
+    .rule {
+      padding:18px;
+      border-radius:24px;
+      background:#fff;
+      border:1px solid #eef2f7;
+      margin-top:14px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .chip { padding:8px 12px; border-radius:999px; font-weight:700; }
+  </style>
+</head>
+<body>
+  <div class="dialog">
+    <div class="header">
+      <div class="profile">
+        <div class="avatar"></div>
+        <div>
+          <div style="font-size:36px;font-weight:800;">李昱成</div>
+          <div style="margin-top:8px;color:#6b7280;">我的刀盾 · Lv.1 · 2 金币</div>
+        </div>
+      </div>
+      <button class="btn">最近操作记录</button>
+    </div>
+
+    <div class="grid">
+      <div class="panel positive">
+        <h2>积极行为</h2>
+        <div class="rule">
+          <div>
+            <div style="font-weight:700;">月度积分前 5 名</div>
+            <div style="color:#6b7280;margin-top:4px;">更像参考图里的大卡片按钮</div>
+          </div>
+          <div>
+            <span class="chip" style="background:#dffaf4;color:#0f766e;">EXP +5</span>
+            <span class="chip" style="background:#fff7dd;color:#a16207;">+5 金币</span>
+          </div>
+        </div>
+        <div class="rule">
+          <div>
+            <div style="font-weight:700;">英语课文背诵和单词默写</div>
+            <div style="color:#6b7280;margin-top:4px;">图标底座和芯片风格统一</div>
+          </div>
+          <div>
+            <span class="chip" style="background:#dffaf4;color:#0f766e;">EXP +1</span>
+            <span class="chip" style="background:#fff7dd;color:#a16207;">+1 金币</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel negative">
+        <h2>需要改进</h2>
+        <div class="rule">
+          <div>
+            <div style="font-weight:700;">迟到扣分</div>
+            <div style="color:#6b7280;margin-top:4px;">扣分项用浅粉底色承载</div>
+          </div>
+          <div>
+            <span class="chip" style="background:#ffe8ed;color:#be123c;">EXP -1</span>
+            <span class="chip" style="background:#fff1f3;color:#be123c;">-1 金币</span>
+          </div>
+        </div>
+        <div class="rule">
+          <div>
+            <div style="font-weight:700;">未交作业</div>
+            <div style="color:#6b7280;margin-top:4px;">强调可读性，不做复杂装饰</div>
+          </div>
+          <div>
+            <span class="chip" style="background:#ffe8ed;color:#be123c;">EXP -1</span>
+            <span class="chip" style="background:#fff1f3;color:#be123c;">-1 金币</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

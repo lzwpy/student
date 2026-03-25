@@ -15,7 +15,6 @@ public class Rule {
     private Long teacherId;
     private String name;
     private String type;
-    private String icon;
     private Integer expValue;
     private Integer coinValue;
     private Integer sortOrder;

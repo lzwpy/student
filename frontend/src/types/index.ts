@@ -35,7 +35,6 @@ export interface RuleItem {
   teacherId: number;
   name: string;
   type: "positive" | "negative";
-  icon: string;
   expValue: number;
   coinValue: number;
   sortOrder: number;

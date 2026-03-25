@@ -56,8 +56,12 @@ onMounted(async () => {
             v-for="item in navItems"
             :key="item.to"
             :to="item.to"
-            class="inline-flex items-center gap-3 rounded-full px-4 py-3 text-sm font-semibold transition"
-            :class="route.path.startsWith(item.activePrefix) ? 'bg-slate-900 text-white shadow-soft' : 'bg-white text-slate-600 border border-line'"
+            class="nav-pill inline-flex items-center gap-3 rounded-full px-4 py-3 text-sm font-semibold transition"
+            :class="
+              route.path.startsWith(item.activePrefix)
+                ? 'nav-pill--active bg-slate-900 text-white shadow-soft'
+                : 'bg-white text-slate-600 border border-line'
+            "
           >
             <AppIcon :name="item.icon" :tone="route.path.startsWith(item.activePrefix) ? 'dark' : 'slate'" :size="16" />
             <span>{{ item.label }}</span>

@@ -21,18 +21,6 @@ const positiveRules = computed(() => props.rules.filter((r) => r.type === "posit
 const negativeRules = computed(() => props.rules.filter((r) => r.type === "negative"));
 const operationVisible = ref(false);
 const petImage = computed(() => `/pets/${props.student?.imageKey || "cat_1"}.svg`);
-
-function ruleIcon(icon?: string) {
-  const map: Record<string, "star" | "spark" | "history" | "warning" | "pet"> = {
-    hand: "spark",
-    heart: "pet",
-    clock: "history",
-    mute: "warning",
-    mic: "spark",
-    star: "star"
-  };
-  return map[icon || "star"] || "star";
-}
 </script>
 
 <template>
@@ -84,7 +72,7 @@ function ruleIcon(icon?: string) {
           >
             <div class="flex items-start justify-between gap-4">
               <div class="flex min-w-0 gap-3">
-                <AppIcon :name="ruleIcon(rule.icon)" tone="mint" :size="18" />
+                <AppIcon name="spark" tone="mint" :size="18" />
                 <div class="min-w-0">
                   <div class="font-bold text-ink">{{ rule.name }}</div>
                   <div class="mt-1 text-xs text-slate-500">轻触即可记录一次积极表现</div>
@@ -113,7 +101,7 @@ function ruleIcon(icon?: string) {
           >
             <div class="flex items-start justify-between gap-4">
               <div class="flex min-w-0 gap-3">
-                <AppIcon :name="ruleIcon(rule.icon)" tone="rose" :size="18" />
+                <AppIcon name="warning" tone="rose" :size="18" />
                 <div class="min-w-0">
                   <div class="font-bold text-ink">{{ rule.name }}</div>
                   <div class="mt-1 text-xs text-slate-500">需要及时记录并支持后续撤回</div>

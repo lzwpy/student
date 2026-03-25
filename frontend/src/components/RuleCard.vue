@@ -19,7 +19,7 @@ const emit = defineEmits<{ edit: []; remove: [] }>();
         </div>
       </div>
       <span class="app-tag" :class="rule.type === 'positive' ? 'app-tag-primary' : 'app-tag-danger'">
-        {{ rule.icon }}
+        {{ rule.type === "positive" ? "加分" : "扣分" }}
       </span>
     </div>
 
